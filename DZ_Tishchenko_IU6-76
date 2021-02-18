@@ -1,0 +1,82 @@
+//Tishchenko Tatiana IU6-76
+//Variant C, variant 2
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
+
+public enum enType {
+    Diesel,
+    Petrol
+}
+
+public enum cabType {
+    Standard,
+    Polar,
+    Tropical
+}
+
+[DataContract]
+public class Tractor{
+    [DataMember]
+    public string nameModelTr;
+    [DataMember]
+    public int serialNumberTr;
+
+    public Tractor() { }
+
+    public Tractor(string nameTr, int numberTr) {
+        nameModelTr = nameTr; 
+        serialNumberTr = numberTr; 
+    }
+
+    public void DataContractJsonSerializerTractor(){
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Tractor));
+        MemoryStream stream = new MemoryStream();
+        XmlWriter writer = new XmlTextWriter("Tractor.xml", null);
+    }
+}
+
+[DataContract]
+public class Engine : Tractor {
+    [DataMember]
+    string nameModelEn;
+    [DataMember]
+    int serialNumberEn;
+    enType engineType;
+
+    public Song(string name, int number, enType type) {
+        nameModelEn = name;
+        serialNumberEn = number;
+        engineType = type;
+    }
+
+    public void DataContractJsonSerializerEngine(){
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Tractor));
+        MemoryStream stream = new MemoryStream();
+        XmlWriter writer = new XmlTextWriter("Engine.xml", null);
+    }
+}
+
+[DataContract]
+public class Cab : Tractor {
+    [DataMember]
+    string nameModelC;
+    [DataMember]
+    int serialNumberC;
+    cabType cType;
+
+    public Song(string name, int number, enType type) {
+        nameModelC = name;
+        serialNumberC = number;
+        cType = type;
+    }
+
+    public void DataContractJsonSerializerCab(){
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Tractor));
+        MemoryStream stream = new MemoryStream();
+        XmlWriter writer = new XmlTextWriter("Cab.xml", null);
+    }
+}
